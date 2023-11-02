@@ -7,27 +7,28 @@ contract Token {
 
   
     // --- ERC20 Data ---
-    string  public constant name = "Zilpio Token";
-    // string  public constant symbol = "ZPT";
-    // string  public constant version = "1";
-    // uint8   public constant decimals = 18;
-    // uint256 public totalSupply;
+    // string  public name = "Zilpio Token Test";
+    string public name;
+    string  public symbol;
+    string  public constant version = "1";
+    uint8 public constant decimals = 18;
+    uint256 public totalSupply;
 
-    // constructor(){      
-    //     totalSupply = 10000;        
+    constructor(string memory _name, string memory _symbol,uint256 _totalSupply){
+        name = _name;      
+        symbol = _symbol;      
+        totalSupply = _totalSupply*(10**decimals);
+        
+    }
+    // function name() public view returns (memory string){
+    //     return name;
     // }
-
-    // function name() public view returns (string)
-    // {
-    //     return name; 
+    // function symbol() public view returns (memory string){
+    //     return symbol;
     // }
-    // function symbol() public view returns (string){
-    //     return ""
+    // function decimals() public view returns (uint8){
+    //     return decimals;
     // }
-    // function decimals() public view returns (uint8) {
-
-    // }
-
     // function totalSupply() public view returns (uint256){
     //     return totalSupply;
     // }
@@ -36,6 +37,7 @@ contract Token {
     // function transferFrom(address _from, address _to, uint256 _value) public returns (bool success)
     // function approve(address _spender, uint256 _value) public returns (bool success)
     // function allowance(address _owner, address _spender) public view returns (uint256 remaining)
+
 
     
 }
