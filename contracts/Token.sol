@@ -13,27 +13,43 @@ contract Token {
     string  public constant version = "1";
     uint8 public constant decimals = 18;
     uint256 public totalSupply;
+    
+    mapping(address => uint256 ) public balanceOf;
+    
+    event Transfer(
+        address indexed from,
+        address indexed to,
+        uint256 value
+    );
 
-    constructor(string memory _name, string memory _symbol,uint256 _totalSupply){
+    constructor(
+        string memory _name, 
+        string memory _symbol,
+        uint256 _totalSupply
+    ){
         name = _name;      
         symbol = _symbol;      
         totalSupply = _totalSupply*(10**decimals);
-        
+        balanceOf[msg.sender] = totalSupply;//not a function but like a map
+        //msg is a global variable
     }
-    // function name() public view returns (memory string){
-    //     return name;
-    // }
-    // function symbol() public view returns (memory string){
-    //     return symbol;
-    // }
-    // function decimals() public view returns (uint8){
-    //     return decimals;
-    // }
-    // function totalSupply() public view returns (uint256){
-    //     return totalSupply;
-    // }
-    // function balanceOf(address _owner) public view returns (uint256 balance)
-    // function transfer(address _to, uint256 _value) public returns (bool success)
+    
+    function transfer(address _to, uint256 _value) 
+        public
+        returns (bool success)
+    {   
+
+        require(balanceOf[msg.sender] >= _value);
+        // console.log(_value);
+        require(_to != address(0));
+        require(_value > 0);
+        balanceOf[msg.sender] = balanceOf[msg.sender] - _value;
+        balanceOf[_to] = balanceOf[_to] + _value;
+
+        emit Transfer(msg.sender, _to, _value);
+        return true;
+
+    }
     // function transferFrom(address _from, address _to, uint256 _value) public returns (bool success)
     // function approve(address _spender, uint256 _value) public returns (bool success)
     // function allowance(address _owner, address _spender) public view returns (uint256 remaining)
