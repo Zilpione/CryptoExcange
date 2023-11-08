@@ -4,7 +4,6 @@ pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 
 contract Token {
-
   
     // --- ERC20 Data ---
     // string  public name = "Zilpio Token Test";
@@ -43,7 +42,7 @@ contract Token {
         public
         returns (bool success)
     {   
-        require(balanceOf[msg.sender] >= _value);
+        require(balanceOf[msg.sender] >= _value, 'Insufficient Funds');
         // console.log(_value);
         
         _transfer(msg.sender,_to,_value);
@@ -86,9 +85,11 @@ contract Token {
      public 
      returns (bool success)
      {
+        // console.log(_from,_to,_value);
         //Check approval       
-        require(_value <= allowance[_from][msg.sender]);
-        require(_value <= balanceOf[_from]);
+        // console.log(_value);
+        require(_value <= allowance[_from][msg.sender], 'insufficient allowance ');
+        require(_value <= balanceOf[_from], 'insufficient balance');
         
         //Reset Allowance
         allowance[_from][msg.sender] = allowance[_from][msg.sender]-_value;
