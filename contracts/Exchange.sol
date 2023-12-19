@@ -10,6 +10,8 @@ contract Exchange {
     mapping(address => mapping(address => uint256)) public tokens;
     mapping(uint256 => _Order) public orders;
     uint256 public orderCount;
+    mapping(uint256 => bool) public orderCancelled;
+
     constructor (
         address  _feeAccount,
         uint256 _feePercent     
@@ -21,7 +23,16 @@ contract Exchange {
     event Deposit(address token, address user, uint256 amount, uint256 balance);
     event Withdraw(address token, address user, uint256 amount, uint256 balance);
 
-    event Order (
+    event OrderEvent (
+        uint256 id,
+        address user, 
+        address tokenGet,
+        uint256 amountGet,
+        address tokenGive,
+        uint256 amountGive,
+        uint256 timestamp
+    );
+    event CancelEvent (
         uint256 id,
         address user, 
         address tokenGet,
@@ -92,13 +103,14 @@ contract Exchange {
             _amountGive,    
             block.timestamp
             );   
+        orderCancelled[orderCount]=false;
         //EMIT EVENT      
-         emit Order(orderCount, msg.sender, 
+         emit OrderEvent(orderCount, msg.sender, 
             _tokenGet, _amountGet,    
             _tokenGive,  _amountGive,    
             block.timestamp
             );
-            
+
     }
 
     function withdrawToken
@@ -120,4 +132,25 @@ contract Exchange {
         emit Withdraw(_token, msg.sender, _amount, tokens[_token][msg.sender]);
     }
   
+  function cancelOrder(uint256 _id) public{
+    //Fetch
+    _Order storage found = orders[_id];
+    
+    //Order must exist, owner
+
+    require(found.id == _id);
+   
+
+    require(address(found.user)==msg.sender);
+    //Cancel
+    orderCancelled[_id] = true; 
+    
+    //Emit evt
+    emit CancelEvent(_id, msg.sender, 
+            found.tokenGet, found.amountGet,    
+            found.tokenGive,  found.amountGive,    
+            block.timestamp
+            );
+
+  }
 }
