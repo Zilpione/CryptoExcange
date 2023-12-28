@@ -103,7 +103,7 @@ contract Exchange {
         uint256 _amountGive
     ) public {
         //REQUIRE BALANCE
-        require(balanceOf(_tokenGive,msg.sender) >= _amountGive);
+        require(balanceOf(_tokenGive, msg.sender) >= _amountGive,"Doesn't have enough balance to make this order");
         //instantiate new order
 
         orderCount ++;
@@ -174,12 +174,11 @@ contract Exchange {
         require(!orderFilled[_id], "Order already filled");
         require(!orderCancelled[_id], "Order Cancelled");
         
-       
-
-        //   require(tokens[_token][msg.sender]>=_amount,'Token non sufficienti');
-        //fetch order
-         _Order storage found = orders[_id];
-        //
+        
+        _Order storage found = orders[_id];
+        uint256 _feeAmount=(found.amountGet * feePercent) / 100;
+        
+        require(balanceOf(found.tokenGet, msg.sender) >= found.amountGet + _feeAmount,"Doesn't have enough token to fill the order");
 
         //Swap token (Trade)
         _trade(
