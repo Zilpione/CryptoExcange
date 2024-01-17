@@ -1,30 +1,40 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ethers } from 'ethers';
 // import { BrowserProvider, parseUnits } from "ethers";
 // npm run start
 
-import { loadProvider, loadNetwork, loadAccount, loadToken } from '../store/interaction';
+import { loadAccount, loadExchange, loadNetwork, loadProvider, loadTokens } from '../store/interaction';
 const config = require('../config.json')
 
 function App() {
 
   const dispatch = useDispatch()
+
   const loadBlockchainData = async () => {
-
-    const account = await loadAccount(dispatch)
+     
+    //Connect Ethers to bc
     const provider = loadProvider(dispatch)
+    //Fetch ChainID ()
     const chainId = await loadNetwork(provider, dispatch)
-    const daiToken = await loadToken(provider, config[chainId].mDAI.address, dispatch)
-    const zilpioToken = await loadToken(provider, config[chainId].ZilpToken.address, dispatch)
-    const mEthToken = await loadToken(provider, config[chainId].mETH.address, dispatch)
+
+    //Load Metamask Account e Balance
+    const account = await loadAccount(provider,dispatch)
 
 
-    //  const mEth=await ethers.getContractAt("Token",config[chainId].mETH.address)
-    //  console.log(await mEth.name())
+    //Load TOkens
+    const mDAI= config[chainId].mDAI
+    const ZilpToken= config[chainId].ZilpToken
+    const mETH= config[chainId].mETH
 
+    const daiToken = await loadTokens(provider,
+    [mDAI.address, ZilpToken.address, mETH.address ],
+      dispatch)
 
+    //Load exchange Contract
+    const exchange = await loadExchange(provider, config[chainId].exchange.address, dispatch)
+   
+    
   }
 
   useEffect(() => {

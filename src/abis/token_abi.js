@@ -256,4 +256,4 @@ export const TOKEN_ABI=[
     "stateMutability": "view",
     "type": "function"
   }
-];
+]
