@@ -2,7 +2,7 @@ export const provider = (state = {}, action) => {
     // console.log("Provider", action.type)
     switch (action.type) {
         case 'PROVIDER_LOADED':
-            // console.log("Loaded", action.connection)
+            // console.log("Loaded", action.connection.provider)
             return {
                 ...state,// copia lo stato attuale e aggiorna connection
                 connection: action.connection
