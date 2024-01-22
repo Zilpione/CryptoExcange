@@ -25,7 +25,7 @@ const Navbar = ({ provider }) => {
 
   const dispatch = useDispatch()
   const chainId = useSelector(state => state.provider.chainId)
-  console.log(chainId)
+  // console.log(chainId)
 
 
   return (

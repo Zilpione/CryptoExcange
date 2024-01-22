@@ -370,6 +370,11 @@ small {
 	height: auto;
 	margin: 0 0.5em 0 0;
 }
+.logo-small {
+	width: 25px;
+	height: auto;
+	margin: 0 0.5em 0 0;
+}
 
 .identicon {
 	margin: 0 0 0 0.60em;
