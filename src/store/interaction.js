@@ -171,22 +171,25 @@ export const subscribeToEvents = (exchangeContract, dispatch) => {
 
 
 export const transferToken = async (provider, exchange, transferType, token, amount, dispatch) => {
-
     try {
+        console.log("depositing: ",{provider, exchange, transferType, token, amount, dispatch})
 
-        dispatch({ type: "TRANSFER_REQUEST" })
+        if (transferType == "deposit") {
+            dispatch({ type: "TRANSFER_REQUEST" })
 
-        const signer = await provider.getSigner()
-        const amountToTransfer = ethers.parseUnits(amount.toString(), 18)
+            const signer = await provider.getSigner()
+            const amountToTransfer = ethers.parseUnits(amount.toString(), 18)
+console.log("asking for approve")
+            let tx = await token.connect(signer).approve(exchange.target, amountToTransfer)
+            await tx.wait()
+            console.log("asking for deposit")
+            tx = await exchange.connect(signer).depositToken(token.target, amountToTransfer)
+            await tx.wait()
 
+        } else if (transferType == "withdraw") {
 
+        }
 
-
-        let tx = await token.connect(signer).approve(exchange.target, amountToTransfer)
-
-        await tx.wait()
-        tx = await exchange.connect(signer).depositToken(token.target, amountToTransfer)
-        await tx.wait()
 
     } catch (error) {
         console.error(error)

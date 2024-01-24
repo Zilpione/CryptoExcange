@@ -1,0 +1,98 @@
+eth_feeHistory
+eth_call
+  Contract call:       Token#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
+
+  Error: Transaction reverted: function selector was not recognized and there's no fallback function
+      at Token.<unrecognized-selector> (contracts/Token.sol:6)
+      at processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at HardhatNode.runCall (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/node.ts:679:20)
+      at EthModule._callAction (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/modules/eth.ts:360:9)    
+      at HardhatNetworkProvider._sendWithLogging (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:145:22)
+      at HardhatNetworkProvider.request (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:122:18)
+      at JsonRpcHandler._handleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:191:20)
+      at JsonRpcHandler._handleSingleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:152:17)
+
+eth_call
+  Contract call:       Token#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+
+  Error: Transaction reverted: function selector was not recognized and there's no fallback function
+      at Token.<unrecognized-selector> (contracts/Token.sol:6)
+      at processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at HardhatNode.runCall (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/node.ts:679:20)
+      at EthModule._callAction (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/modules/eth.ts:360:9)    
+      at HardhatNetworkProvider._sendWithLogging (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:145:22)
+      at HardhatNetworkProvider.request (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:122:18)
+      at JsonRpcHandler._handleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:191:20)
+      at JsonRpcHandler._handleSingleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:152:17)
+
+eth_call
+  Contract call:       Token#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+  Error: Transaction reverted: function selector was not recognized and there's no fallback function
+      at Token.<unrecognized-selector> (contracts/Token.sol:6)
+      at processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at HardhatNode.runCall (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/node.ts:679:20)
+      at EthModule._callAction (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/modules/eth.ts:360:9)    
+      at HardhatNetworkProvider._sendWithLogging (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:145:22)
+      at HardhatNetworkProvider.request (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:122:18)
+      at JsonRpcHandler._handleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:191:20)
+      at JsonRpcHandler._handleSingleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:152:17)
+
+eth_call
+  Contract call:       Token#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
+
+  Error: Transaction reverted: function selector was not recognized and there's no fallback function
+      at Token.<unrecognized-selector> (contracts/Token.sol:6)
+      at processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at HardhatNode.runCall (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/node.ts:679:20)
+      at EthModule._callAction (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/modules/eth.ts:360:9)    
+      at HardhatNetworkProvider._sendWithLogging (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:145:22)
+      at HardhatNetworkProvider.request (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:122:18)
+      at JsonRpcHandler._handleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:191:20)
+      at JsonRpcHandler._handleSingleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:152:17)
+
+eth_call
+  Contract call:       Token#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+
+  Error: Transaction reverted: function selector was not recognized and there's no fallback function
+      at Token.<unrecognized-selector> (contracts/Token.sol:6)
+      at processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at HardhatNode.runCall (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/node.ts:679:20)
+      at EthModule._callAction (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/modules/eth.ts:360:9)    
+      at HardhatNetworkProvider._sendWithLogging (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:145:22)
+      at HardhatNetworkProvider.request (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:122:18)
+      at JsonRpcHandler._handleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:191:20)
+      at JsonRpcHandler._handleSingleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:152:17)
+
+eth_call
+  Contract call:       Token#<unrecognized-selector>
+  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
+
+  Error: Transaction reverted: function selector was not recognized and there's no fallback function
+      at Token.<unrecognized-selector> (contracts/Token.sol:6)
+      at processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at HardhatNode.runCall (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/node.ts:679:20)
+      at EthModule._callAction (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/modules/eth.ts:360:9)    
+      at HardhatNetworkProvider._sendWithLogging (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:145:22)
+      at HardhatNetworkProvider.request (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/provider/provider.ts:122:18)
+      at JsonRpcHandler._handleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:191:20)      at JsonRpcHandler._handleSingleRequest (/home/zilpio/code/CryptoExchange/node_modules/hardhat/src/internal/hardhat-network/jsonrpc/handler.ts:152:17)
+
+eth_feeHistory
+eth_blockNumber (6)
+
+
+
+
+
+
