@@ -167,6 +167,12 @@ export const subscribeToEvents = (exchangeContract, dispatch) => {
 
         dispatch({ type: "TRANSFER_SUCCESS", evt })
     })
+
+    exchangeContract.on('Withdraw', (evt) => {
+        console.log("deposigted")
+
+        dispatch({ type: "TRANSFER_SUCCESS", evt })
+    })
 }
 
 
@@ -174,22 +180,27 @@ export const transferToken = async (provider, exchange, transferType, token, amo
     try {
         console.log("depositing: ",{provider, exchange, transferType, token, amount, dispatch})
 
-        if (transferType == "deposit") {
+        
             dispatch({ type: "TRANSFER_REQUEST" })
 
             const signer = await provider.getSigner()
             const amountToTransfer = ethers.parseUnits(amount.toString(), 18)
 console.log("asking for approve")
-            let tx = await token.connect(signer).approve(exchange.target, amountToTransfer)
+let tx
+if (transferType == "Deposit") {
+           tx = await token.connect(signer).approve(exchange.target, amountToTransfer)
             await tx.wait()
             console.log("asking for deposit")
             tx = await exchange.connect(signer).depositToken(token.target, amountToTransfer)
-            await tx.wait()
-
-        } else if (transferType == "withdraw") {
-
         }
-
+        else if (transferType == "Withdraw")
+        {
+            tx = await token.connect(signer).approve(exchange.target, amountToTransfer)
+            await tx.wait()
+            console.log("asking for withdraw")
+            tx = await exchange.connect(signer).withdrawToken(token.target, amountToTransfer)
+        }
+        await tx.wait()
 
     } catch (error) {
         console.error(error)

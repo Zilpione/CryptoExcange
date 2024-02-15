@@ -5,8 +5,9 @@ import logo from '../assets/ZilpioGmaingLogoTransparent.png';
 import eth from '../assets/eth.svg';
 import { loadBalances, transferToken } from '../store/interaction';
 const Balance = () => {
-  const [depositAmount, setDepositAmount] = useState(false);
-  const [deposit2Amount, setDeposit2Amount] = useState(false);
+  const [isDeposit, setIsDeposit] = useState(true);
+  const [depositAmount, setDepositAmount] = useState(0);
+  const [deposit2Amount, setDeposit2Amount] = useState(0);
   const dispatch = useDispatch()
   const chainId = useSelector(state => state.provider.chainId)
   const account = useSelector(state => state.provider.account)
@@ -38,25 +39,40 @@ const Balance = () => {
     if (token === undefined) return;
 
     if (token.target === selectedTokens[0].target) {
-      transferToken(provider, exchange, "deposit", selectedTokens[0], depositAmount, dispatch)
+      transferToken(provider, exchange, "Deposit", selectedTokens[0], depositAmount, dispatch)
       setDepositAmount(0)
     } else if (token.target === selectedTokens[1].target) {
-      transferToken(provider, exchange, "deposit", selectedTokens[1], deposit2Amount, dispatch)
+      transferToken(provider, exchange, "Deposit", selectedTokens[1], deposit2Amount, dispatch)
+      setDeposit2Amount(0)
+    }
+  }
+  const widthdrawHandler = (e, token) => {
+    e.preventDefault()
+    // console.log(token.target)
+    if (token === undefined) return;
+
+    if (token.target === selectedTokens[0].target) {
+      transferToken(provider, exchange, "Withdraw", selectedTokens[0], depositAmount, dispatch)
+      setDepositAmount(0)
+    } else if (token.target === selectedTokens[1].target) {
+      transferToken(provider, exchange, "Withdraw", selectedTokens[1], deposit2Amount, dispatch)
       setDeposit2Amount(0)
     }
   }
 
-  const depositRef=useRef(null)
-  const withdrawRef=useRef(null)
+  const depositRef = useRef(null)
+  const withdrawRef = useRef(null)
 
-  const tabHandler=(e)=>{
+  const tabHandler = (e) => {
     console.log(e.target.className)
-    if(e.target.className !== depositRef.current.className){
-      e.target.className='tab tab--active'
-      depositRef.current.className='tab'
-    }else{
-      e.target.className='tab tab--active'
-      withdrawRef.current.className='tab'
+    if (e.target.className !== depositRef.current.className) {
+      e.target.className = 'tab tab--active'
+      depositRef.current.className = 'tab'
+      setIsDeposit(false)
+    } else {
+      e.target.className = 'tab tab--active'
+      withdrawRef.current.className = 'tab'
+      setIsDeposit(true)
     }
     // e.target
   }
@@ -73,8 +89,8 @@ const Balance = () => {
       <div className='component__header flex-between'>
         <h2>Balance</h2>
         <div className='tabs'>
-          <button ref={depositRef} className='tab tab--active' onClick={(e)=>tabHandler(e)}>Deposit</button>
-          <button ref={withdrawRef} className='tab' onClick={(e)=>tabHandler(e)}>Withdraw</button>
+          <button ref={depositRef} className='tab tab--active' onClick={(e) => tabHandler(e)}>Deposit</button>
+          <button ref={withdrawRef} className='tab' onClick={(e) => tabHandler(e)}>Withdraw</button>
         </div>
       </div>
 
@@ -88,16 +104,20 @@ const Balance = () => {
           <p><small>Exchange</small><br />{exchangeBalances && exchangeBalances[0]}</p>
         </div>
 
-        <form onSubmit={(e) => depositHandler(e, selectedTokens[0])}>
+        <form onSubmit={isDeposit?(e) => depositHandler(e, selectedTokens[0]):(e) => widthdrawHandler(e, selectedTokens[0])}>
           <label htmlFor="token0">{selectedSymbols && selectedSymbols[0]} Amount</label>
           <input type="text" id='token0'
+            value={depositAmount}
             placeholder='0.0000'
             onChange={(e) => amountHandler(e, selectedTokens[0])}
 
           />
 
           <button className='button' type='submit'>
-            <span>Deposit</span>
+            {isDeposit ?
+              (<span>Deposit</span>) :
+              (<span>Withdraw</span>)
+            }
           </button>
         </form>
       </div>
@@ -114,12 +134,15 @@ const Balance = () => {
           <p><small>Exchange</small><br />{exchangeBalances && exchangeBalances[1]}</p>
         </div>
 
-        <form onSubmit={(e) => depositHandler(e, selectedTokens[1])}>
+        <form onSubmit={isDeposit?(e) => depositHandler(e, selectedTokens[1]):(e) => widthdrawHandler(e, selectedTokens[1])}>
           <label htmlFor="token1"></label>
-          <input type="text" id='token1' placeholder='0.0000' onChange={(e) => amountHandler(e, selectedTokens[1])} />
+          <input type="text" value={deposit2Amount} id='token1' placeholder='0.0000' onChange={(e) => amountHandler(e, selectedTokens[1])} />
 
           <button className='button' type='submit'>
-            <span>Deposit</span>
+          {isDeposit ?
+              (<span>Deposit</span>) :
+              (<span>Withdraw</span>)
+            }
           </button>
         </form>
       </div>
