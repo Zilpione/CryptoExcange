@@ -16,6 +16,16 @@ const initialState = {}
 const middleware = [thunk]
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)))
 // const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunk)))
+// const advancedComposeEnhancers = composeWithDevTools({
+//     maxAge: 500,
+//     trace: true,
+//     serialize: {
+//       function: (_key, value) => {
+//         return typeof value === 'BigInt' ? Number(value) : value;
+//       },
+//     },
+//   });
 
+// const store = createStore(reducer, initialState, advancedComposeEnhancers(applyMiddleware(...middleware)))
 
 export default store

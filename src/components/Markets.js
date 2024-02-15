@@ -33,10 +33,6 @@ const Markets = () => {
     marketHandler({ target: { value: defaultValue } });
   }
 
-
-
-
-
   return (
     <div className='component exchange__markets'>
       <div className='component__header'>

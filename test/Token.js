@@ -45,6 +45,10 @@ describe("Token", function  () {
       it('assign total supply to deployer', async ()=>{
         expect(await token.balanceOf(deployer.address)).to.equal(tokens(totalSupply)) 
       })
+      
+      it('check balance of Unknow address', async ()=>{
+        expect(await token.balanceOf("0x53daB3B66CBB5652769AfdE5dcf5bE0fBa284B87")).to.equal(tokens(0)) 
+      })
    
     })
    

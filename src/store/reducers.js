@@ -121,15 +121,22 @@ export const selectedTokens = (state = DEFAULT_TOKEN_STATE, action) => {
 
 }
 
-const DEFAULT_EXCHANGE_STATE ={
-    loaded: false, 
+const DEFAULT_EXCHANGE_STATE = {
+    loaded: false,
     contract: {},
-    transaction:{
-        isSUccessful:false
+    transaction: {
+        isSuccessful: false
     },
-    events:[]
+    allOrders: {
+        loaded: false,
+        data: []
+    },
+    events: []
+
 }
 export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
+    let index, data
+
     switch (action.type) {
         case 'EXCHANGE_LOADED':
             return {
@@ -180,7 +187,7 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
                 transferInProgress: false,
                 events: [action.evt]
             }
-       
+
         case 'TRANSFER_FAIL':
             console.log("TRANSFER_FAILs")
             return {
@@ -193,6 +200,56 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
                 },
                 transferInProgress: false,
                 events: [action.error]
+            }
+        case 'NEW_ORDER_REQUEST':
+            console.log("NEW_ORDER_REQUEST")
+            return {
+                ...state,
+                transaction: {
+                    transactionType: 'New Order',
+                    isPending: true,
+                    isSuccesful: false
+
+                }
+            }
+        case 'NEW_ORDER_FAIL':
+            console.log("NEW_ORDER_FAIL")
+            return {
+                ...state,
+                transaction: {
+                    transactionType: 'New Order',
+                    isPending: false,
+                    isSuccesful: false,
+                    isError: true
+                },
+                events: [action.error]
+            }
+        case 'NEW_ORDER_SUCCESS':
+            console.log("NEW_ORDER_SUCCESS")
+            // console.log(action.orderId)
+            // console.log(state.allOrders.data)
+            // console.log(action.data.orderId)
+            //Handle duplicate
+           index = state.allOrders.data.findIndex(order => order[0] == action.data.orderId)
+                   
+            if (index === -1) {
+                data = [...state.allOrders.data, action.data]
+            } else {
+                data = state.allOrders.data
+            }
+            return {
+                ...state,
+                allOrders: {
+                    ...state.allOrders,
+                    data: data
+                },
+                transaction: {
+                    transactionType: 'New Order',
+                    isPending: false,
+                    isSuccesful: true,
+                    isError: false
+                },
+                // events: [action.evt, ...state.events]
             }
 
         default:

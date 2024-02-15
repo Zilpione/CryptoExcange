@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Balance from './Balance';
+import { default as Balance } from './Balance';
 import Markets from './Markets';
 import Navbar from './Navbar';
+import Order from './Order';
+import OrderBook from './OrderBook';
 // 
 // import { BrowserProvider, parseUnits } from "ethers";
 // npm run start
@@ -86,7 +88,7 @@ function App() {
   
             <Balance />
   
-            {/* <Order /> */}
+            <Order />
   
           </section>
           <section className='exchange__section--right grid'>
@@ -97,7 +99,7 @@ function App() {
   
             {/* Trades */}
   
-            {/* OrderBook */}
+            <OrderBook/>
   
           </section>
         </main>

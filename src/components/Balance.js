@@ -79,22 +79,23 @@ const Balance = () => {
 
   useEffect(() => {
     if (exchange && selectedTokens[0] && selectedTokens[1] && account) {
-      console.log("aggiorno balance")
+      // console.log("aggiorno balance")
       loadBalances(exchange, selectedTokens, account, dispatch)
     }
   }, [exchange, selectedTokens, account, transferInProgress])
 
   return (
-    <div className='component exchange__transfers'>
+    
+<div className='component exchange__transfers'>
+    {selectedTokens && selectedTokens[0] && selectedTokens[1]?(
+      <>
       <div className='component__header flex-between'>
         <h2>Balance</h2>
         <div className='tabs'>
-          <button ref={depositRef} className='tab tab--active' onClick={(e) => tabHandler(e)}>Deposit</button>
-          <button ref={withdrawRef} className='tab' onClick={(e) => tabHandler(e)}>Withdraw</button>
+            <button ref={depositRef} className='tab tab--active' onClick={(e) => tabHandler(e)}>Deposit</button>
+            <button ref={withdrawRef} className='tab' onClick={(e) => tabHandler(e)}>Withdraw</button>
         </div>
       </div>
-
-      {/* Deposit/Withdraw Component 1 (SelectedToken1) */}
 
       <div className='exchange__transfers--form'>
         <div className='flex-between'>
@@ -107,7 +108,7 @@ const Balance = () => {
         <form onSubmit={isDeposit?(e) => depositHandler(e, selectedTokens[0]):(e) => widthdrawHandler(e, selectedTokens[0])}>
           <label htmlFor="token0">{selectedSymbols && selectedSymbols[0]} Amount</label>
           <input type="text" id='token0'
-            value={depositAmount}
+            value={depositAmount===0?'':depositAmount}
             placeholder='0.0000'
             onChange={(e) => amountHandler(e, selectedTokens[0])}
 
@@ -136,7 +137,7 @@ const Balance = () => {
 
         <form onSubmit={isDeposit?(e) => depositHandler(e, selectedTokens[1]):(e) => widthdrawHandler(e, selectedTokens[1])}>
           <label htmlFor="token1"></label>
-          <input type="text" value={deposit2Amount} id='token1' placeholder='0.0000' onChange={(e) => amountHandler(e, selectedTokens[1])} />
+          <input type="text" value={deposit2Amount===0?'':deposit2Amount} id='token1' placeholder='0.0000' onChange={(e) => amountHandler(e, selectedTokens[1])} />
 
           <button className='button' type='submit'>
           {isDeposit ?
@@ -148,6 +149,13 @@ const Balance = () => {
       </div>
 
       <hr />
+   
+      </>
+    ) : (
+      // Puoi visualizzare uno spinner o un messaggio di caricamento
+      <p>Caricamento in corso...</p>
+    )}
+  
     </div>
   );
 }
